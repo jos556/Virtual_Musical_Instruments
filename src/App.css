@@ -1,0 +1,508 @@
+/* 全局樣式 */
+:root {
+  --primary-color: #646cff;
+  --secondary-color: #535bf2;
+  --wood-dark: #654321;
+  --wood-light: #8b4513;
+  --background: #f8f9fa;
+}
+
+body {
+  background: var(--background);
+  color: #333;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.app {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(145deg, #ffffff, #f0f0f0);
+}
+
+/* 標題樣式 */
+h1 {
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  letter-spacing: 2px;
+}
+
+h2 {
+  color: #2c3e50;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* 樂器選擇器樣式 */
+.instrument-selector {
+  margin: 2rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.instrument-selector button {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  border: 2px solid var(--primary-color);
+  border-radius: 12px;
+  background-color: white;
+  color: var(--primary-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  min-width: 120px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.instrument-selector button:hover {
+  background-color: var(--primary-color);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(100, 108, 255, 0.3);
+}
+
+.instrument-selector button.active {
+  background-color: var(--primary-color);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(100, 108, 255, 0.3);
+}
+
+/* 音量控制美化 */
+.volume-control {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.volume-control label {
+  font-size: 1.1rem;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.volume-control input[type="range"] {
+  width: 300px;
+  height: 8px;
+  -webkit-appearance: none;
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+  border-radius: 4px;
+  outline: none;
+}
+
+.volume-control input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  background: white;
+  border: 2px solid var(--primary-color);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.volume-control input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 鍵盤提示美化 */
+.keyboard-hint {
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  background: rgba(44, 62, 80, 0.05);
+  border-radius: 12px;
+  color: #2c3e50;
+  font-size: 1rem;
+  font-weight: 500;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* 樂器容器通用樣式 */
+.piano-container,
+.kalimba-container,
+.xylophone-container {
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1),
+              0 6px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  margin: 2rem 0;
+}
+
+/* 添加懸停效果 */
+.piano-container:hover,
+.kalimba-container:hover,
+.xylophone-container:hover {
+  transform: translateY(-5px);
+}
+
+/* 按鍵標籤美化 */
+.key-label,
+.tine-label,
+.bar-label {
+  font-weight: 500;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* 動畫效果 */
+@keyframes pressDown {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(5px); }
+}
+
+.piano-key:active,
+.kalimba-tine:active,
+.xylophone-bar:active {
+  animation: pressDown 0.1s ease;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .instrument-selector {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .volume-control input[type="range"] {
+    width: 200px;
+  }
+
+  .piano-container,
+  .kalimba-container,
+  .xylophone-container {
+    padding: 2rem;
+  }
+}
+
+/* 卡林巴琴的木盒樣式 */
+.kalimba-container {
+  width: 90%;
+  max-width: 800px;
+  padding: 3rem;
+  background: linear-gradient(145deg, #8b4513, #654321);
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  position: relative;
+  margin: 2rem auto;
+}
+
+/* 卡林巴琴的木紋效果 */
+.kalimba-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(139, 69, 19, 0.5),
+    rgba(139, 69, 19, 0.5) 20px,
+    rgba(101, 67, 33, 0.5) 20px,
+    rgba(101, 67, 33, 0.5) 40px
+  );
+  border-radius: 20px;
+  pointer-events: none;
+}
+
+.kalimba-tines {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 2rem;
+  min-height: 300px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  position: relative;
+}
+
+/* 木琴架子和整體容器樣式 */
+.xylophone-container {
+  width: 90%;
+  max-width: 1000px;
+  padding: 4rem 2rem 2rem;
+  margin: 4rem auto;
+  position: relative;
+  background: transparent;
+}
+
+/* 木琴架子效果 */
+.xylophone-stand {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+/* 左支架 */
+.xylophone-stand::before {
+  content: '';
+  position: absolute;
+  left: 10%;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  background: linear-gradient(90deg, #654321, #8b4513);
+  border-radius: 10px;
+  transform: skew(-15deg);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* 右支架 */
+.xylophone-stand::after {
+  content: '';
+  position: absolute;
+  right: 10%;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  background: linear-gradient(90deg, #8b4513, #654321);
+  border-radius: 10px;
+  transform: skew(15deg);
+  box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* 橫桿 */
+.xylophone-crossbar {
+  position: absolute;
+  top: 40px;
+  left: 5%;
+  right: 5%;
+  height: 15px;
+  background: linear-gradient(to bottom, #8b4513, #654321);
+  border-radius: 8px;
+  z-index: 1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.xylophone-bars {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 2rem 0;
+  min-height: 300px;
+  position: relative;
+  z-index: 2;
+}
+
+/* 木琴音條樣式 */
+.xylophone-bar {
+  width: 60px;
+  min-height: 160px;
+  background: linear-gradient(to bottom, #cd853f, #deb887);
+  border-radius: 8px;
+  position: relative;
+  transition: transform 0.2s, background 0.2s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 懸掛效果 */
+.xylophone-bar::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  width: 2px;
+  height: 20px;
+  background: #333;
+  transform: translateX(-50%);
+}
+
+/* 木琴音條的漸變色彩 */
+.xylophone-bar:nth-child(odd) {
+  background: linear-gradient(to bottom, #deb887, #cd853f);
+}
+
+.xylophone-bar:nth-child(even) {
+  background: linear-gradient(to bottom, #d2691e, #8b4513);
+}
+
+/* 卡林巴琴音條樣式 */
+.kalimba-tine {
+  width: 40px;
+  height: 200px;
+  background: linear-gradient(to bottom, #cd853f, #8b4513);
+  border-radius: 20px 20px 8px 8px;
+  position: relative;
+  transition: transform 0.2s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* 音條的木紋效果 */
+.kalimba-tine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.1) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+  border-radius: 20px 20px 8px 8px;
+  pointer-events: none;
+}
+
+/* 互動效果 */
+.xylophone-bar:hover,
+.kalimba-tine:hover {
+  transform: translateY(-5px);
+  filter: brightness(1.1);
+}
+
+.xylophone-bar:active,
+.kalimba-tine:active {
+  transform: translateY(0);
+  filter: brightness(0.95);
+}
+
+/* 標籤樣式優化 */
+.bar-label,
+.tine-label {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.key-hint {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* 鋼琴容器樣式 */
+.piano-container {
+  width: 90%;
+  max-width: 1200px;
+  padding: 3rem;
+  background: linear-gradient(145deg, #1a1a1a, #333);
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  position: relative;
+  margin: 2rem auto;
+}
+
+/* 鋼琴鍵盤容器 */
+.piano-keys {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  padding: 2rem 0;
+  background: #1a1a1a;
+  border-radius: 10px;
+  box-shadow: inset 0 -2px 4px rgba(255, 255, 255, 0.1);
+}
+
+/* 白鍵樣式 */
+.white-key {
+  width: 60px;
+  height: 200px;
+  background: linear-gradient(to bottom, #fff 0%, #eee 100%);
+  border: 1px solid #ccc;
+  border-radius: 0 0 5px 5px;
+  margin: 0 2px;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.white-key:active,
+.white-key.active {
+  background: linear-gradient(to bottom, #eee 0%, #ddd 100%);
+  box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(2px);
+}
+
+/* 黑鍵樣式 */
+.black-key {
+  width: 40px;
+  height: 120px;
+  background: linear-gradient(to bottom, #333 0%, #000 100%);
+  border: 1px solid #000;
+  border-radius: 0 0 3px 3px;
+  margin: 0 -20px;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.black-key:active,
+.black-key.active {
+  background: linear-gradient(to bottom, #000 0%, #222 100%);
+  box-shadow: inset 0 -1px 2px rgba(255, 255, 255, 0.1);
+  transform: translateY(2px);
+}
+
+/* 鋼琴鍵標籤 */
+.piano-key .key-label {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: #666;
+}
+
+.black-key .key-label {
+  color: #fff;
+}
+
+/* 鋼琴外框裝飾 */
+.piano-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: linear-gradient(to right, #4a4a4a, #2a2a2a);
+  border-radius: 20px 20px 0 0;
+}
+
+.piano-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: linear-gradient(to right, #4a4a4a, #2a2a2a);
+  border-radius: 0 0 20px 20px;
+}
